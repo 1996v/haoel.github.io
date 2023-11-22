@@ -137,12 +137,7 @@ install_gost() {
         -v ${CERT_DIR}:${CERT_DIR}:ro \
         --net=host ginuerzh/gost \
         -L "http2://${USER}:${PASS}@${BIND_IP}:${PORT}?cert=${CERT}&key=${KEY}&probe_resist=code:400&knock=www.google.com"
-    echo "准备安装gost-warp"
-    sudo docker run -d --name gost-warp \
-        -v ${CERT_DIR}:${CERT_DIR}:ro \
-        --net=host ginuerzh/gost \
-        -L "http2://${USER}:${PASS}@${BIND_IP}:${PORT}?cert=${CERT}&key=${KEY}&probe_resist=code:404&knock=www.google.com" \
-        -F "socks://localhost:40000"   
+
 }
 
 crontab_exists() {
