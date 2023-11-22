@@ -132,12 +132,6 @@ install_gost() {
     CERT_DIR=/etc/letsencrypt
     CERT=${CERT_DIR}/live/${DOMAIN}/fullchain.pem
     KEY=${CERT_DIR}/live/${DOMAIN}/privkey.pem
-    echo "准备安装gost"
-    sudo docker run -d --name gost \
-        -v ${CERT_DIR}:${CERT_DIR}:ro \
-        --net=host ginuerzh/gost \
-        -L "http2://${USER}:${PASS}@${BIND_IP}:${PORT}?cert=${CERT}&key=${KEY}&probe_resist=code:400&knock=www.google.com"
-
     echo "准备安装gost-warp"
     sudo docker run -d --name gost-warp \
         -v ${CERT_DIR}:${CERT_DIR}:ro \
